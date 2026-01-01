@@ -37,7 +37,16 @@ or get an executable from [releases](https://github.com/quackduck/cool/releases)
 Only when done incorrectly. Cool only changes the minimum fan speed; macOS can decide the actual fan speed to set it to. This means that your fan speed will never be below the default. Likewise, the maximum fan speed Cool can set (this is hard-coded) is the maximum safe speed: 6500 RPM. This means that your fan speed is always in safe values!
 
 **How does this work?**  
-Cool sets fan speeds, reads fan speeds and reads temperatures using the brilliant [smcFanControl CLI](https://github.com/hholtmann/smcFanControl/tree/master/smc-command). The `smc` binary is the compiled executable. If you're curious, Cool changes the value of the SMC key `F0Mn`. It reads the CPU 1 temperature sensor (`TC0E`).
+Cool sets fan speeds, reads fan speeds and reads temperatures using the brilliant [smcFanControl CLI](https://github.com/hholtmann/smcFanControl/tree/master/smc-command). The `smc` binary is compiled from source as part of the build process to ensure native support for Apple Silicon (M1/M2/etc) and Intel Macs. If you're curious, Cool changes the value of the SMC key `F0Mn`. It reads the CPU 1 temperature sensor (`TC0E`).
+
+## Building from source
+
+To build `cool`, you need Go installed. You also need a macOS environment to compile the `smc` tool (requires Xcode command line tools).
+
+```bash
+make smc
+go build
+```
 
 ## Thanks
 
